@@ -21,7 +21,7 @@
       const dino7 = new Dino ("Pteranodon", 20, 51, "Carnivore", "North America", "Late Cretaceous", "Actually a flying reptile, the Pteranodon is not a dinosaur.");
       const pigeon = new Dino ("Pigeon", 0.5, 0.22, "Herbivore", "World Wide", "Holocene", "all birds are living dinosaurs")
 
-      let dinos = [dino1, dino2, dino3, dino4, dino5, dino6, dino7]
+      let dinos = [dino1, dino2, dino3, dino4, dino5, dino6, dino7, pigeon]
    
         // Create Human Object
 
@@ -48,7 +48,6 @@
     })
 
 
-    
         // Create Dino Compare Method 1
         // NOTE: Weight in JSON file is in lbs, height in inches. 
 
@@ -63,7 +62,6 @@
      } else {`Your weight is same as ${randomDino.species} ` }
     }
 
-        
         // Create Dino Compare Method 2
 
     function heightCompare () {
@@ -74,11 +72,10 @@
         console.log (`${randomDino.species} is ${heightRatio} times taller than you!`) } 
         else if (weightRatio < 1) {
         console.log (`${randomDino.species} is ${heightRatio} times shorter than you!`)
-        } else {`Your height is same asw ${randomDino.species} ` }  //maybe not height ratio but difference?
+        } else {`Your height is same as ${randomDino.species} ` }  //maybe not height ratio but difference?
     }
 
-    
-        
+
         // Create Dino Compare Method 3
     //diet compare
      
@@ -96,8 +93,36 @@
     
     
         // Generate Tiles for each Dino in Array
+
+        function TileGenerator() {
+
+
+            const grid = document.getElementById("grid")
+
+            for (i = 0; i < dinos.length; i++) {
+                    let tiles = document.createElement("div");
+                    tiles.className = "grid-item";
+                    let dheader = document.createElement("h3");
+                   // let dfact = document.createElement("p");
+                    let species = document.createTextNode(dinos[i].species);
+                   // let fact = document.createTextNode(dinos[i].fact);
+                    dheader.appendChild(species)
+                   // dfact.appendChild(fact)
+                    tiles.appendChild(dheader)
+                    //tiles.appendChild(dfact)
+                    grid.appendChild(tiles)
+                };
+
+              
+
+            };
+
       
             // Add tiles to DOM
+
+
+
+
     
         // Remove form from screen
     
@@ -108,6 +133,9 @@
     button.addEventListener("click", function () {
        
         console.log("CLICKEN!!!");  
+       
+        
+
     ///working yay
     
     }); 
