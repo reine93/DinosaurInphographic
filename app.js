@@ -101,21 +101,45 @@
 
             for (i = 0; i < dinos.length; i++) {
                     let tiles = document.createElement("div");
-                    tiles.className = "grid-item";
-                    let dheader = document.createElement("h3");
-                   // let dfact = document.createElement("p");
-                    let species = document.createTextNode(dinos[i].species);
-                   // let fact = document.createTextNode(dinos[i].fact);
-                    dheader.appendChild(species)
-                   // dfact.appendChild(fact)
-                    tiles.appendChild(dheader)
-                    //tiles.appendChild(dfact)
+                    tiles.className = "grid-item"; 
+                    let dinoprops = `<h3>${dinos[i].species}</h3><img src="images/${(dinos[i].species.toLowerCase())}.png" alt="image of ${dinos[i].species}"><p>${dinos[i].fact}</p>`;
+                    tiles.innerHTML = dinoprops;
                     grid.appendChild(tiles)
                 };
 
+
+                let humantile = document.createElement("div");
+                humantile.className = "grid-item"
+                humantile.id = "centerhuman"
+                let humaninfo = `<h3>${human.name}</h3><img src="images/human.png" alt="image of human">`;
+                humantile.innerHTML = humaninfo
+                grid.appendChild(humantile)
+
+/*                     let humantile = document.createElement("div")
+                    humantile.id = "humantile";
+                    humantile.className = "grid-item";
+                    let hheader = document.createElement("h3");
+                    let hname = document.createTextNode(human.name)
+                    hheader.appendChild(hname)
+                    humantile.appendChild(hheader)
+                    grid.appendChild(humantile)
+                 */
+
+                
               
 
             };
+
+
+            function centertile () {
+
+               const centertile = document.getElementById("centerhuman");
+
+                centertile.style.gridRowStart = 2
+                centertile.style.gridRowEnd = 3
+
+                
+            }
 
       
             // Add tiles to DOM
