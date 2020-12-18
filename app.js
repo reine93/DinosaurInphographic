@@ -1,7 +1,7 @@
 
     // Create Dino Constructor
     function Dino (name, kg, cm, food, where, when, truth) {
-        this.species = name
+        this.name = name
         this.weight = kg
         this.height = cm
         this.diet = food
@@ -25,8 +25,14 @@
    
         // Create Human Object
 
-        let human = {};
-    
+        let human
+ 
+        function Person (username,usercm,userkg,slctDiet) {
+            this.name = username
+            this.height = usercm
+            this.weight = userkg
+            this.diet = slctDiet
+        }    
         // Use IIFE to get human data from form
     
         const button = document.getElementById('btn')
@@ -39,12 +45,7 @@
         let diet = document.getElementById('userdiet');
         let slctDiet = diet.options[diet.selectedIndex].text;
 
-        return human = {
-            name: username,
-            height: usercm,
-            weight: userkg,
-            diet: slctDiet
-        }
+        return human = new Person (username,usercm,userkg,slctDiet)
     })
 
 
@@ -56,10 +57,10 @@
      let weightRatio = (randomDino.weight / human.weight).toFixed(1);
 
      if (weightRatio > 1) {
-     console.log (`${randomDino.species} weights ${weightRatio} times more than you!`) } 
+     console.log (`${randomDino.name} weights ${weightRatio} times more than you!`) } 
      else if (weightRatio < 1) {
-     console.log (`${randomDino.species} weights ${weightRatio} times less than you!`)
-     } else {`Your weight is same as ${randomDino.species} ` }
+     console.log (`${randomDino.name} weights ${weightRatio} times less than you!`)
+     } else {`Your weight is same as ${randomDino.name} ` }
     }
 
         // Create Dino Compare Method 2
@@ -69,10 +70,10 @@
         let heightRatio = (randomDino.height / human.height).toFixed(1);
     
         if (heightRatio > 1) {
-        console.log (`${randomDino.species} is ${heightRatio} times taller than you!`) } 
+        console.log (`${randomDino.name} is ${heightRatio} times taller than you!`) } 
         else if (weightRatio < 1) {
-        console.log (`${randomDino.species} is ${heightRatio} times shorter than you!`)
-        } else {`Your height is same as ${randomDino.species} ` }  //maybe not height ratio but difference?
+        console.log (`${randomDino.name} is ${heightRatio} times shorter than you!`)
+        } else {`Your height is same as ${randomDino.name} ` }  //maybe not height ratio but difference?
     }
 
 
@@ -83,65 +84,52 @@
       let randomDino = dinos[Math.floor(Math.random() * dinos.length)];
 
       if (randomDino.diet == human.diet) {
-          console.log (`${randomDino.species} is also a ${human.diet} just like you!`)
-      } else {console.log (`${randomDino.species}\'s diet is different than yours. He is a ${randomDino.diet}`)}
+          console.log (`${randomDino.name} is also a ${human.diet} just like you!`)
+      } else {console.log (`${randomDino.name}\'s diet is different than yours. He is a ${randomDino.diet}`)}
     };
 
 
-
-
-    
     
         // Generate Tiles for each Dino in Array
+        
+        //shuffleArray
+
+        function shuffleArray(arr) {
+            for (let i = 0; i < arr.length; i++) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+          }
+          
+          // put a value in the middle of an array
+          function valueMiddleArray(arr, human) {
+            arr.splice((arr.length/2), 0, human);
+            return arr;
+          }
+
 
         function TileGenerator() {
 
 
+            let humanDino = valueMiddleArray(shuffleArray(dinos), human);
+
+
+
             const grid = document.getElementById("grid")
 
-            for (i = 0; i < dinos.length; i++) {
+            for (i = 0; i < humanDino.length; i++) {
                     let tiles = document.createElement("div");
                     tiles.className = "grid-item"; 
-                    let dinoprops = `<h3>${dinos[i].species}</h3><img src="images/${(dinos[i].species.toLowerCase())}.png" alt="image of ${dinos[i].species}"><p>${dinos[i].fact}</p>`;
-                    tiles.innerHTML = dinoprops;
+                    let tileprops = `<h3>${humanDino[i].name}</h3><img src="images/${(humanDino[i].name.toLowerCase())}.png" alt="image of ${humanDino[i].name}"><p>${humanDino[i].fact}</p>`;
+                    tiles.innerHTML = tileprops;
                     grid.appendChild(tiles)
                 };
+                            ///human with errors, make new var where you will extract human data?
+                            //or actually valuemiddlearray, make it initialize after dinos???
+/* 
 
 
-                let humantile = document.createElement("div");
-                humantile.className = "grid-item"
-                humantile.id = "centerhuman"
-                let humaninfo = `<h3>${human.name}</h3><img src="images/human.png" alt="image of human">`;
-                humantile.innerHTML = humaninfo
-                grid.appendChild(humantile)
-
-/*                     let humantile = document.createElement("div")
-                    humantile.id = "humantile";
-                    humantile.className = "grid-item";
-                    let hheader = document.createElement("h3");
-                    let hname = document.createTextNode(human.name)
-                    hheader.appendChild(hname)
-                    humantile.appendChild(hheader)
-                    grid.appendChild(humantile)
-                 */
-
-                
-              
-
-            };
-
-
-            function centertile () {
-
-               const centertile = document.getElementById("centerhuman");
-
-                centertile.style.gridRowStart = 2
-                centertile.style.gridRowEnd = 3
-
-                
-            }
-
-      
             // Add tiles to DOM
 
 
