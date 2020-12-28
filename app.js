@@ -22,10 +22,13 @@
       const pigeon = new Dino ("Pigeon", 0.5, 0.22, "Herbivore", "World Wide", "Holocene", "all birds are living dinosaurs")
 
       let dinos = [dino1, dino2, dino3, dino4, dino5, dino6, dino7, pigeon]
+
+      //get original from json, make a new function that will assign constructor thru a loop?
    
         // Create Human Object
 
         let human
+        let humancenter
  
         function Person (username,usercm,userkg,slctDiet) {
             this.name = username
@@ -45,7 +48,8 @@
         let diet = document.getElementById('userdiet');
         let slctDiet = diet.options[diet.selectedIndex].text;
 
-        return human = new Person (username,usercm,userkg,slctDiet)
+        return human = new Person (username,usercm,userkg,slctDiet)  
+
     })
 
 
@@ -108,13 +112,20 @@
             return arr;
           }
 
+          
+    
+    // On button click, prepare and display infographic
+    
+     button.addEventListener("click", function () {
+       
+        console.log("CLICK!!!");  
 
-        function TileGenerator() {
+        return (function TileGenerator() {
 
+
+            //human with errors, make new var where you will extract human data?
 
             let humanDino = valueMiddleArray(shuffleArray(dinos), human);
-
-
 
             const grid = document.getElementById("grid")
 
@@ -125,30 +136,9 @@
                     tiles.innerHTML = tileprops;
                     grid.appendChild(tiles)
                 };
-                            ///human with errors, make new var where you will extract human data?
-                            //or actually valuemiddlearray, make it initialize after dinos???
-/* 
-
-
-            // Add tiles to DOM
 
 
 
-
+            })();
     
-        // Remove form from screen
-    
-    
-    // On button click, prepare and display infographic
-    
-    
-    button.addEventListener("click", function () {
-       
-        console.log("CLICKEN!!!");  
-       
-        
-
-    ///working yay
-    
-    }); 
-    
+        })
