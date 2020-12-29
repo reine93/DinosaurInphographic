@@ -31,7 +31,8 @@
         let humancenter
  
         function Person (username,usercm,userkg,slctDiet) {
-            this.name = username
+            this.name = 'human'
+            this.username = username
             this.height = usercm
             this.weight = userkg
             this.diet = slctDiet
@@ -93,10 +94,9 @@
     };
 
 
+
     
         // Generate Tiles for each Dino in Array
-        
-        //shuffleArray
 
         function shuffleArray(arr) {
             for (let i = 0; i < arr.length; i++) {
@@ -113,32 +113,40 @@
           }
 
           
+        function TileGenerator() {
+
+
+            let humanDino = valueMiddleArray(shuffileArray(dinos), human);
+
+            const grid = document.getElementById("grid")
+
+            humanDinos.forEach(dino =>{
+                let tiles = document.createElement("div");
+                tiles.className = "grid-item"; 
+                var tileprops;
+                if(dino.name = 'human'){
+                    tileprops = `<h3>${dino.username}</h3><img src="images/${dino.name}.png" alt="image of ${dino.name}">`;
+                }
+                else{
+                    tileprops = `<h3>${dino.name}</h3><img src="images/${(dino.name.toLowerCase())}.png" alt="image of ${dino.name}"><p>${dino.fact}</p>`;
+                }
+                    tiles.innerHTML = tileprops;
+                    grid.appendChild(tiles)
+            });
+            }   
+
+            ///returns undefined dinos, study how foreach works and see what u can do with dino object
+
     
     // On button click, prepare and display infographic
     
      button.addEventListener("click", function () {
        
         console.log("CLICK!!!");  
-
-        return (function TileGenerator() {
-
-
-            //human with errors, make new var where you will extract human data?
-
-            let humanDino = valueMiddleArray(shuffleArray(dinos), human);
-
-            const grid = document.getElementById("grid")
-
-            for (i = 0; i < humanDino.length; i++) {
-                    let tiles = document.createElement("div");
-                    tiles.className = "grid-item"; 
-                    let tileprops = `<h3>${humanDino[i].name}</h3><img src="images/${(humanDino[i].name.toLowerCase())}.png" alt="image of ${humanDino[i].name}"><p>${humanDino[i].fact}</p>`;
-                    tiles.innerHTML = tileprops;
-                    grid.appendChild(tiles)
-                };
+   
 
 
 
-            })();
+            }
+            )
     
-        })
