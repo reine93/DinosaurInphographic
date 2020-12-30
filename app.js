@@ -205,4 +205,8 @@
         TileGenerator();
          });
             
+    //utilize random comparisons or facts with switch cases
+    //new form when button click
+    //scroll down to human?
+    //change weight and height again
     
