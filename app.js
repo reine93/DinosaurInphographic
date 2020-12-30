@@ -183,17 +183,22 @@
                 let tileprops;
                 if(dino.name == 'human'){
                       tileprops = `<h3>${dino.displayName}</h3><img src="images/${(dino.name.toLowerCase())}.png" alt="image of ${dino.name}">`;
+
                 }
                 else{
                       tileprops = `<h3>${dino.species}</h3><img src="images/${(dino.species.toLowerCase())}.png" alt="image of ${dino.species}"><p>${dino.fact}</p>`
                 }
                 tiles.innerHTML = tileprops;
                 grid.appendChild(tiles)
-            })            }   
+            });           
+         };   
 
 
     
     // On button click, prepare and display infographic
+
+    function scrollDown () {
+        window.scrollTo(0, 1220)};
 
     const button = document.getElementById('btn')
     
@@ -203,6 +208,10 @@
 
         fromForm();
         TileGenerator();
+
+        window.setTimeout(scrollDown, 10);
+
+
          });
             
     //utilize random comparisons or facts with switch cases
