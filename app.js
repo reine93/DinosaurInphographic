@@ -1,13 +1,13 @@
 
     // Create Dino Constructor
-    function Dino (name, kg, cm, food, where, when, truth) {
-        this.species = name
-        this.weight = kg
-        this.height = cm
-        this.diet = food
-        this.place = where
-        this.time = when
-        this.fact = truth
+    function Dino (species, weight, height, diet, where, when, fact) {
+        this.species = species;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet;
+        this.where = where;
+        this.when = when;
+        this.fact = fact;
     };
        
         // Create Dino Objects
@@ -15,8 +15,8 @@
     const dinoInfo = [
     {
         "species": "Triceratops",
-        "weight": 13000,
-        "height": 114,
+        "weight": 5897,
+        "height": 290,
         "diet": "herbivore",
         "where": "North America",
         "when": "Late Cretaceous",
@@ -24,8 +24,8 @@
     },
     {
         "species": "Tyrannosaurus Rex",
-        "weight": 11905,
-        "height": 144,
+        "weight": 5400,
+        "height": 366,
         "diet": "carnivore",
         "where": "North America",
         "when": "Late Cretaceous",
@@ -33,8 +33,8 @@
     },
     {
         "species": "Anklyosaurus",
-        "weight": 10500,
-        "height": 55,
+        "weight": 4763,
+        "height": 135,
         "diet": "herbivore",
         "where": "North America",
         "when": "Late Cretaceous",
@@ -42,8 +42,8 @@
     },
     {
         "species": "Brachiosaurus",
-        "weight": 70000,
-        "height": "372",
+        "weight": 31751,
+        "height": 945,
         "diet": "herbivore",
         "where": "North America",
         "when": "Late Jurasic",
@@ -51,8 +51,8 @@
     },
     {
         "species": "Stegosaurus",
-        "weight": 11600,
-        "height": 79,
+        "weight": 5262,
+        "height": 200,
         "diet": "herbivore",
         "where": "North America, Europe, Asia",
         "when": "Late Jurasic to Early Cretaceous",
@@ -60,8 +60,8 @@
     },
     {
         "species": "Elasmosaurus",
-        "weight": 16000,
-        "height": 59,
+        "weight": 7257,
+        "height": 150,
         "diet": "carnivore",
         "where": "North America",
         "when": "Late Cretaceous",
@@ -69,8 +69,8 @@
     },
     {
         "species": "Pteranodon",
-        "weight": 44,
-        "height": 20,
+        "weight": 20,
+        "height": 51,
         "diet": "carnivore",
         "where": "North America",
         "when": "Late Cretaceous",
@@ -78,144 +78,187 @@
     },
     {
         "species": "Pigeon",
-        "weight": 0.5,
-        "height": 9,
+        "weight": 0.2,
+        "height": 23,
         "diet": "herbivore",
         "where": "World Wide",
         "when": "Holocene",
         "fact": "All birds are living dinosaurs."
     }];
 
-    const dinos = dinoInfo.map(dino => new Dino(dino.species, dino.weight, dino.height, dino.diet, dino.place, dino.time, dino.fact))
+    const dinos = dinoInfo.map(dino => new Dino(dino.species, dino.weight, dino.height, dino.diet, dino.where, dino.when, dino.fact));
 
    
         // Create Human Object
 
-        let human
- 
-        function Person (username,usercm,userkg,slctDiet) {
-            this.name = 'human'
-            this.height = usercm
-            this.weight = userkg
-            this.diet = slctDiet
-            this.displayName = username
-        }    
-        // Use IIFE to get human data from form
+    let human
 
-        function fromForm () {
+    function Person (username,usercm,userkg,slctDiet) {
+        this.name = 'human'
+        this.height = usercm
+        this.weight = userkg
+        this.diet = slctDiet
+        this.displayName = username
+    }   
+    //Gets values from form, assigns prototype values to human
+    function fromForm () {
+        let username = document.getElementById('username').value;
+        let usercm = document.getElementById('usercm').value;
+        let userkg = document.getElementById('userkg').value;
+        let diet = document.getElementById('userdiet');
+        let slctDiet = diet.options[diet.selectedIndex].text;
 
-            let username = document.getElementById('username').value;
-            let usercm = document.getElementById('usercm').value;
-            let userkg = document.getElementById('userkg').value;
-            let diet = document.getElementById('userdiet');
-            let slctDiet = diet.options[diet.selectedIndex].text;
-    
-            return human = new Person (username,usercm,userkg,slctDiet)
+        return human = Object.create(new Person (username,usercm,userkg,slctDiet))
+    }
+    //Shuffles Array
+    function shuffleArray(arr) {
+        for (let i = 0; i < arr.length; i++) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
         }
-
-
-        // Create Dino Compare Method 1
-        // NOTE: Weight in JSON file is in lbs, height in inches. 
-
-    function weightCompare () {
-     let randomDino = dinos[Math.floor(Math.random() * dinos.length)];
-     let weightRatio = (randomDino.weight / human.weight).toFixed(1);
-
-     if (weightRatio > 1) {
-     console.log (`${randomDino.name} weights ${weightRatio} times more than you!`) } 
-     else if (weightRatio < 1) {
-     console.log (`${randomDino.name} weights ${weightRatio} times less than you!`)
-     } else {`Your weight is same as ${randomDino.name} ` }
-    }
-
-        // Create Dino Compare Method 2
-
-    function heightCompare () {
-        let randomDino = dinos[Math.floor(Math.random() * dinos.length)];
-        let heightRatio = (randomDino.height / human.height).toFixed(1);
-    
-        if (heightRatio > 1) {
-        console.log (`${randomDino.name} is ${heightRatio} times taller than you!`) } 
-        else if (weightRatio < 1) {
-        console.log (`${randomDino.name} is ${heightRatio} times shorter than you!`)
-        } else {`Your height is same as ${randomDino.name} ` }  //maybe not height ratio but difference?
-    }
-
-
-        // Create Dino Compare Method 3
-    //diet compare
-     
-    function dietCompare() {
-      let randomDino = dinos[Math.floor(Math.random() * dinos.length)];
-
-      if (randomDino.diet == human.diet) {
-          console.log (`${randomDino.name} is also a ${human.diet} just like you!`)
-      } else {console.log (`${randomDino.name}\'s diet is different than yours. He is a ${randomDino.diet}`)}
+        return arr;
+      };
+      
+      //Puts a value in the middle of an array
+      function valueMiddleArray(arr, human) {
+        arr.splice((arr.length/2), 0, human);
+        return arr;
+      };
+    //Generate number 1-4
+    function RandNum () {
+       return Math.floor(Math.random() * 4) + 1;
     };
 
-    
-        // Generate Tiles for each Dino in Array
+    //Generates tiles from with dino and human objects
 
-        function shuffleArray(arr) {
-            for (let i = 0; i < arr.length; i++) {
-              const j = Math.floor(Math.random() * (i + 1));
-              [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-          }
-          
-          // put a value in the middle of an array
-          function valueMiddleArray(arr, human) {
-            arr.splice((arr.length/2), 0, human);
-            return arr;
-          }
-
-
-        function TileGenerator() {
+    function TileGenerator() {
 
             valueMiddleArray(shuffleArray(dinos), human)
 
-            const grid = document.getElementById("grid")
+            const grid = document.getElementById("grid") 
 
             dinos.forEach(dino =>{
+
+            //Weight Compare Method
+
+            function weightCompare() {
+            /*     let randomDino = dinos[Math.floor(Math.random() * dinos.length)]; */ //placeholder to test function
+
+                    let weightRatio = (dino.weight / human.weight).toFixed(1);
+               
+                    if (weightRatio > 1) {
+                    return (`${dino.species} weights ${weightRatio} times more than you!`) } 
+                    else if (weightRatio < 1) {
+                    return (`${dino.species} weights ${weightRatio} times less than you!`)
+                    } else return `Your weight is same as ${dino.species} `
+                   };
+               
+                   //Height compare method
+               
+            function heightCompare () {
+
+                       let heightRatio = (dino.height / human.height).toFixed(1);
+                   
+                       if (heightRatio > 1) {
+                       return (`${dino.species} is ${heightRatio} times taller than you!`)}
+                       else if (heightRatio < 1) {
+                        return (`${dino.species} is ${heightRatio} times shorter than you!`)
+                       } else return `Your height is same as ${dino.species} `   
+                   }
+               
+               
+                   //Diet compare method
+                    
+            function dietCompare() {
+               
+                     if (dino.diet == human.diet) {
+                         return (`${dino.species} is also a ${human.diet} just like you!`)
+                     } else {return (`${dino.species}\'s diet is different than yours. He is a ${dino.diet}`)}
+                   };
+               
+
+                   //Fact Generator
+
+            function dinoFact() {
+                           return (`${dino.fact}`)
+                       };
+               
+                    //Randomly chooses one method
+             function InfoGen () {
+                let info;
+                switch (RandNum()) {
+                    case 1:
+                        info = weightCompare();
+                        break;
+                    case 2:
+                        info = heightCompare();
+                        break;
+                    case 3:
+                        info = dietCompare();
+                        break;
+                    case 4:
+                        info = dinoFact();
+                };
+                return info
+            };
+
+
+
                 let tiles = document.createElement("div");
                 tiles.className = "grid-item"; 
                 let tileprops;
+
+
                 if(dino.name == 'human'){
                       tileprops = `<h3>${dino.displayName}</h3><img src="images/${(dino.name.toLowerCase())}.png" alt="image of ${dino.name}">`;
 
                 }
-                else{
-                      tileprops = `<h3>${dino.species}</h3><img src="images/${(dino.species.toLowerCase())}.png" alt="image of ${dino.species}"><p>${dino.fact}</p>`
+
+                else if (dino.species == "Pigeon"){
+
+                    tileprops = `<h3>${dino.species}</h3><img src="images/${(dino.species.toLowerCase())}.png" alt="image of ${dino.species}"><p>${dino.fact}</p>`
+
                 }
+
+                else{
+                    let randomInfo = InfoGen();
+                    tileprops = `<h3>${dino.species}</h3><img src="images/${(dino.species.toLowerCase())}.png" alt="image of ${dino.species}"><p>${randomInfo}</p>`
+             
+                    }
                 tiles.innerHTML = tileprops;
                 grid.appendChild(tiles)
             });           
-         };   
+         return click = true};   
 
 
-    
-    // On button click, prepare and display infographic
 
+    //Scrolls down to human tile
     function scrollDown () {
-        window.scrollTo(0, 1220)};
+        window.scrollTo(0, 665)};
 
-    const button = document.getElementById('btn')
+    //Removes human info entry form 
+    const form = document.getElementById("dino-compare")   
+    function removeForm() {
+            return form.style.display = "none";
+        }
     
+    //Checks if all info is entered, generates tiles
+    function checkInfo () {
+            if (human.weight == "" || human.weight == "" || human.displayName == "" ) {
+                alert("Please enter all information")
+            } else {
+                TileGenerator();
+                window.setTimeout(scrollDown, 10);} }
+        
+
+    //On button click get info, remove form, generate tiles
+    const button = document.getElementById('btn')    
     button.addEventListener("click", function () {
-       
         console.log("CLICK!!!");  
-
-        fromForm();
-        TileGenerator();
-
-        window.setTimeout(scrollDown, 10);
-
-
+            fromForm();
+            removeForm();
+            checkInfo(); 
          });
             
-    //utilize random comparisons or facts with switch cases
-    //new form when button click
-    //scroll down to human?
+
     //change weight and height again
-    
