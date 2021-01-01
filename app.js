@@ -227,8 +227,9 @@
                     }
                 tiles.innerHTML = tileprops;
                 grid.appendChild(tiles)
+                removeForm();
             });           
-         return click = true};   
+        };   
 
 
 
@@ -256,7 +257,6 @@
     button.addEventListener("click", function () {
         console.log("CLICK!!!");  
             fromForm();
-            removeForm();
             checkInfo(); 
          });
             
