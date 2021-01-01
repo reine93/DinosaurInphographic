@@ -248,7 +248,7 @@
                 alert("Please enter all information")
             } else {
                 TileGenerator();
-                window.setTimeout(scrollDown, 50);} }
+                window.setTimeout(scrollDown, 100);} }
         
 
     //On button click get info, remove form, generate tiles
