@@ -246,7 +246,7 @@
     //Checks if all info is entered, generates tiles
     function checkInfo () {
             if (human.weight == "" || human.weight == "" || human.displayName == "" ) {
-                alert("Please enter all information")
+                alert("Please enter all your information")
             } else {
                 TileGenerator();
                 window.setTimeout(scrollDown, 100);} }
